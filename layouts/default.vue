@@ -63,9 +63,14 @@ export default {
           to: { name: 'index' }
         },
         {
-          title: 'Inspire',
+          title: 'Add',
           icon: 'lightbulb',
-          to: { name: 'inspire' }
+          to: { name: 'add' }
+        },
+        {
+          title: 'Buy',
+          icon: 'lightbulb',
+          to: { name: 'buy' }
         }
       ]
     }
