@@ -123,7 +123,7 @@
               MatronClass
             </div>
 
-            <div class="column has-text-weight-semibold	">
+            <div class="column has-text-weight-semibold	  ">
               Properties
 
             </div>

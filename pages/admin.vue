@@ -70,7 +70,7 @@
 
       async settle(){
         const contract = new web3.eth.Contract(BettingContractABI, config.MATIC_BETTING_CONTRACT_ADDRESS)
-        await contract.methods.settle('101', '0xf8454a749418e5e8c6a116900b10c4b7c2573349').send({
+        await contract.methods.settle('103', '0x312e4826a495a707d64c9c96f5eab7d24ee23e4f').send({
             from: web3.currentProvider.selectedAddress
           })
           .then(Response => console.log(Response))
