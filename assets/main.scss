@@ -1,0 +1,21 @@
+// Set your colors
+
+$blue: #000272;
+$green: #2ABB9B;
+$red: #ff6b6b;
+// Set your colors
+$primary: $blue;
+$radius: 10px;
+
+
+// input[type="text"]:hover {
+//   font: 15px/20px "Lato", Arial, sans-serif;
+//   color: #535c68;
+//   box-shadow: 0 6px 16px 0 rgba(11, 21, 71, .07);
+//   width: 100%;
+//   box-sizing: border-box;
+//   letter-spacing: 1px;
+//   border: 1.3px solid $blue;
+// }
+
+@import "~bulma/bulma";
