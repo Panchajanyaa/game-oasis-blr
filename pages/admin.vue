@@ -1,13 +1,13 @@
 <template>
-  <div class="">
+  <div class="column is-8 is-offset-2">
     <b-button @click="addTournament()">Add Tournament</b-button>
     <b-button @click="getTournamentId()">Get ID</b-button>
-
-    <b-field label="Message">
+    <br> <br>
+    <b-field label="Teams Array">
       <b-input v-modal='playerArray' type="textarea"></b-input>
     </b-field>
 
-    <b-button @click='addPlayers()'>Add Players </b-button>
+    <b-button @click='addPlayers()'>Add Players </b-button> <br>
 
     <b-button @click='settle()'>Settle</b-button>
   </div>
@@ -68,9 +68,9 @@
           .catch(err => console.log(err))
       },
 
-      async settle(){
+      async settle() {
         const contract = new web3.eth.Contract(BettingContractABI, config.MATIC_BETTING_CONTRACT_ADDRESS)
-        await contract.methods.settle('103', '0x312e4826a495a707d64c9c96f5eab7d24ee23e4f').send({
+        await contract.methods.settle('101', '0x312e4826a495a707d64c9c96f5eab7d24ee23e4f').send({
             from: web3.currentProvider.selectedAddress
           })
           .then(Response => console.log(Response))
