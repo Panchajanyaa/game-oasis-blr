@@ -110,7 +110,7 @@
       </b-modal>
 
       <!-- info modal -->
-      <b-modal :active.sync='isAxieModalActive' on-cancel='onCancel()'>
+      <b-modal :active.sync='isAxieModalActive'>
         <div class="card">
           <div class="columns is-vcentered">
             <div class="column has-text-weight-semibold	">
@@ -296,9 +296,7 @@
         this.isAxieModalActive = true
       },
 
-      onCancel() {
-        this.isBetSuccess = false;
-      }
+  
 
     },
 
