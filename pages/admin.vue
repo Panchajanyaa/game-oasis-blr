@@ -1,15 +1,17 @@
 <template>
-  <div class="column is-8 is-offset-2">
-    <b-button @click="addTournament()">Add Tournament</b-button>
-    <b-button @click="getTournamentId()">Get ID</b-button>
+  <div class="column is-6 is-offset-3" style="height:90vh">
     <br> <br>
-    <b-field label="Teams Array">
-      <b-input v-modal='playerArray' type="textarea"></b-input>
-    </b-field>
 
-    <b-button @click='addPlayers()'>Add Players </b-button> <br>
+    <form>
+      <h1 class="is-size-3"> Publish result for Tournament<strong> #{{tournamentId}} </strong></h1> <br>
+      <b-field label="Winner">
+        <b-input v-model="winner" placeholder="Address" size="is-medium" rounded></b-input>
+      </b-field> <br>
+      <b-button size="is-medium" @click='settle()' class="is-primary is-fullwidth">Settle</b-button>
+    </form> <br> <br>
+    <b-button class="is-primary" @click="addTournament()">Add Tournament</b-button>
 
-    <b-button @click='settle()'>Settle</b-button>
+
   </div>
 </template>
 
@@ -23,7 +25,8 @@
   export default {
     data() {
       return {
-        playerArray: ['0xf8454a749418e5e8c6a116900b10c4b7c2573349', '0x7C27C62376f85797288b4Cc2B5b924d2FE70a462']
+        tournamentId: '',
+        winner: ''
       }
     },
 
@@ -56,7 +59,7 @@
       async getTournamentId() {
         const contract = new web3.eth.Contract(BettingContractABI, config.MATIC_BETTING_CONTRACT_ADDRESS)
         const tournamentId = await contract.methods.getTournamentId().call()
-        console.log(tournamentId)
+        this.tournamentId = tournamentId
       },
 
       async addPlayers() {
@@ -70,16 +73,27 @@
 
       async settle() {
         const contract = new web3.eth.Contract(BettingContractABI, config.MATIC_BETTING_CONTRACT_ADDRESS)
-        await contract.methods.settle('101', '0x312e4826a495a707d64c9c96f5eab7d24ee23e4f').send({
+        await contract.methods.settle(this.tournamentId, this.winner).send({
             from: web3.currentProvider.selectedAddress
           })
-          .then(Response => console.log(Response))
+          .then(Response => {
+            this.$buefy.toast.open({
+              duration: 2000,
+              message: `Tournament Settled`,
+              position: 'is-top',
+              type: 'is-success'
+            })
+          })
           .catch(err => console.log(err))
       }
     },
 
     created() {
       this.connectMetamask()
+    },
+
+    mounted() {
+      this.getTournamentId()
     }
 
   }

@@ -7,7 +7,12 @@
         <div style="margin-top:3%">
           <div class="columns is-vcentered">
             <div class="column">
-              <h1 class="is-size-3" style="margin-left:8px;"> BlockLeague </h1>
+              <nuxt-link to='/'>
+              
+              <h1 class="is-size-3" style="margin-left:8px;"> 
+                <img src="/favicon.svg" style="width:50px;margin-bottom:-15px"/> &nbsp;
+                BlockLeague </h1>
+              </nuxt-link>
             </div>
 
 
@@ -137,6 +142,8 @@
 
 
 <style lang="scss" scoped>
+
+
   @font-face {
     font-family: 'CircularStd';
     src: url('~assets/CircularStd-Book.woff') format('woff2'),

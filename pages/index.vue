@@ -4,13 +4,14 @@
       <div class="column is-8 is-offset-2">
 
         <div class="columns">
-          <div class="column">
-            Tournament ID #{{tournamentId}}
+          <div class="column header-card has-text-centered" style="margin:1em;">
+            <img src="https://image.flaticon.com/icons/svg/1170/1170611.svg" style="width:22px;margin-bottom:-5px;" />
+            Tournament ID <strong> #{{tournamentId}} </strong>
           </div>
 
-          <div class="column has-text-right">
-            Total Value Locked: {{lockedValue}} <img src="https://instadapp.io/earn/img/icons/tokens/dai.svg"
-              style="width:18px;margin-bottom:-4px" />
+          <div class="column  header-card has-text-centered" style="margin:1em;">
+            Total Value Locked: <strong>{{lockedValue}} <img src="https://instadapp.io/earn/img/icons/tokens/dai.svg"
+                style="width:18px;margin-bottom:-4px" /> </strong>
           </div>
         </div>
 
@@ -96,7 +97,7 @@
             <div v-else>
               <form @submit.prevent='approve()'>
                 <h1 class="is-size-4"> Stake on <strong>{{betModalData.name}}</strong></h1> <br>
-                <b-field label='Amount:'>
+                <b-field label='Amount in Dai:'>
                   <b-input v-model="betModalData.amount" class="is-large" required> </b-input>
                 </b-field> <br>
                 <b-button :loading='isButtonLoading' native-type='submit' class="is-fullwidth is-medium is-primary"> Bet
@@ -125,11 +126,10 @@
 
             <div class="column has-text-weight-semibold	  ">
               Properties
-
             </div>
           </div>
         </div>
-    
+
         <div class="card column" style="background: rgb(244, 245, 246);">
           <div v-for='(axie, index) in specificLeaderAxies' :key='index'>
             <div class="card">
@@ -148,7 +148,6 @@
 
                 <div class="column">
                   {{ axie.stats ? Object.keys(axie.stats).map(stat => `${stat} -> ${axie.stats[stat]}`).join(', ') : ''}}
-
                 </div>
               </div>
             </div>
@@ -313,6 +312,9 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "~assets/main.scss";
+
+
   .card {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 2px 0px, rgba(0, 0, 0, 0.05) 0px 4px 8px 0px;
@@ -320,6 +322,16 @@
     border-radius: 8px;
     padding: 1em;
     margin-bottom: 20px;
+  }
+
+  .header-card {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 2px 0px, rgba(0, 0, 0, 0.05) 0px 4px 8px 0px;
+    // height: 100%;
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 20px;
+    border: 1px solid $primary;
   }
 
 </style>
