@@ -92,6 +92,7 @@
             <div v-if="isBetSuccess" class="has-text-centered" style="padding: 2em 0em">
               <img src='~assets/success.svg' style="width:200px;margin-bottom:3em" />
               <h1 class="subtitle">Hurray! Bet Successful </h1>
+              <a :href="explorerURL + transactionHash" target="_blank"> Check on Explorer </a>
             </div>
 
             <div v-else>
@@ -109,7 +110,7 @@
       </b-modal>
 
       <!-- info modal -->
-      <b-modal :active.sync='isAxieModalActive'>
+      <b-modal :active.sync='isAxieModalActive' on-cancel='onCancel()'>
         <div class="card">
           <div class="columns is-vcentered">
             <div class="column has-text-weight-semibold	">
@@ -188,7 +189,9 @@
         tournamentId: '',
         lockedValue: '',
         isBetSuccess: false,
-        isAxieModalActive: false
+        isAxieModalActive: false,
+        explorerURL: 'https://explorer.testnet2.matic.network/tx/',
+        transactionHash: ''
       };
     },
 
@@ -254,6 +257,7 @@
             console.log(response)
             this.isBetSuccess = true
             this.isButtonLoading = false
+            this.transactionHash = response.transactionHash
             this.getTotalValue()
           })
           .catch(err => {
@@ -292,8 +296,8 @@
         this.isAxieModalActive = true
       },
 
-      async getSaneAxieData(stats) {
-
+      onCancel() {
+        this.isBetSuccess = false;
       }
 
     },
@@ -303,6 +307,8 @@
     },
 
     async mounted() {
+      this.isBetSuccess = false;
+
       this.getLeaderboardData(),
         await this.getTournamentId()
       this.getTotalValue()
